@@ -1,8 +1,3 @@
-####################################################
-# Modified by Nazmi Asri                           #
-# Original code: http://thecodacus.com/            #
-# All right reserved to the respective owner       #
-####################################################
 
 # Import OpenCV2 for image processing
 # Import os for file path
@@ -16,7 +11,7 @@ import numpy as np
 from PIL import Image
 
 # Create Local Binary Patterns Histograms for face recognization
-recognizer = cv2.face.createLBPHFaceRecognizer()
+recognizer = cv2.face.LBPHFaceRecognizer_create()
 
 # Using prebuilt frontal face training model, for face detection
 detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml");
@@ -61,10 +56,11 @@ def getImagesAndLabels(path):
 
 
 # Get the faces and IDs
-faces, ids = getImagesAndLabels('dataset')
+faces, ids = getImagesAndLabels('datasets')
 
 # Train the model using the faces and IDs
 recognizer.train(faces, np.array(ids))
+print("Successfully trained")
 
 # Save the model into trainer.yml
-recognizer.save('trainer/trainer.yml')
+recognizer.write('trainer/trainer.yml')
