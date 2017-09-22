@@ -1,9 +1,3 @@
-####################################################
-# Modified by Nazmi Asri                           #
-# Original code: http://thecodacus.com/            #
-# All right reserved to the respective owner       #
-####################################################
-
 # Import OpenCV2 for image processing
 import cv2
 
@@ -14,13 +8,13 @@ vid_cam = cv2.VideoCapture(0)
 face_detector = cv2.CascadeClassifier('haarcascade_frontalface_alt_tree.xml')
 
 # For each person, one face id
-face_id = "Rastogi"
+face_id = "3"
 
 # Initialize sample face image
 count = 0
 
 # Start looping
-while(True):
+while True:
 
     # Capture video frame
     _, image_frame = vid_cam.read()
@@ -33,15 +27,14 @@ while(True):
 
     # Loops for each faces
     for (x, y, w, h) in faces:
-
         # Crop the image frame into rectangle
-        cv2.rectangle(image_frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
-        
+        cv2.rectangle(image_frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+
         # Increment sample face image
         count += 1
 
         # Save the captured image into the datasets folder
-        cv2.imwrite("datasets/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y+h, x:x+w])
+        cv2.imwrite("datasets/Choti." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y + h, x:x + w])
 
         # Display the video frame, with bounded rectangle on the person's face
         cv2.imshow('frame', image_frame)
@@ -51,7 +44,7 @@ while(True):
         break
 
     # If image taken reach 100, stop taking video
-    elif count>100:
+    elif count > 100:
         break
 
 # Stop video
